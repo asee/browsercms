@@ -7,6 +7,12 @@
         :hidden => node.hidden?,
         :access_icon => status_icon(node.status),
       } %>
-    <%= render :partial => "section_node", :collection => node.child_nodes.all(:order => 'position'), :locals => {:display => false} %>    
+    <ul style="display:none" class="loading_placeholder">
+      <li>
+        <div class="roundedcorners">
+        <p >loading...</p>
+        </div>
+      </li>
+    </ul>
   </li>
 </ul>

@@ -79,7 +79,8 @@ module Cms::Routes
         :move_after => :put,
         :move_to_beginning => :put,
         :move_to_end => :put,
-        :move_to_root => :put
+        :move_to_root => :put,
+        :children => :get
       }
       cms.attachment '/attachments/:id', :controller => 'attachments', :action => 'show'
 

@@ -339,13 +339,23 @@ jQuery(function($){
 	$.cookieSet.add('openSectionNodes', id, {path: '/'})
 	
 	$(sectionNode).addClass('open')
-	$(sectionNode).find('li:first > ul').show();
+	var childSections = $(sectionNode).find('li:first > ul')
+	childSections.show();
 	var img = $(sectionNode).find('li:first table:first img.folder_toggle');
 	if (img.hasClass('large')){
 	img.attr('src','/images/cms/sitemap/gray_contract.png').addClass("folder-open")    
 	} else {
 	img.attr('src','/images/cms/sitemap/contract.png').addClass("folder-open")    
 	}
+	
+  if (childSections.hasClass('loading_placeholder')){
+    // We don't want the section node, we want the section
+    var sectionId = getId($(sectionNode).find('td.node')[0].id, "section_");
+    childSections.load('/cms/section_nodes/'+sectionId+'/children', function(){
+      childSections.removeClass('loading_placeholder')
+      initSitemap()
+    })
+  }
     }
     
     var closeSection = function(sectionNode) {
@@ -422,7 +432,8 @@ jQuery(function($){
 	    }
 	$(selectedSectionSelector).click()
     }  
-    
+
+   var initSitemap = function(){    
     //----- Init -----------------------------------------------------------------
     //In other words, stuff that happens when the page loads
     //This is where we actually manipulate the DOM, fire events, etc.
@@ -433,6 +444,9 @@ jQuery(function($){
     enableDropZones()  
     addNodeOnClick()
     addToggleSectionOnClick()
-    fireOnClickForOpenSectionNodes()
+  }
+  
+  initSitemap();
+  fireOnClickForOpenSectionNodes();
 
 })

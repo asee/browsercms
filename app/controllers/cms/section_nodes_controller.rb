@@ -24,6 +24,10 @@ class SectionNodesController < Cms::BaseController
     @section_node.move_to(@root, 0)
     render :json => {:success => true, :message => "'#{@section_node.node.name}' was moved to '#{@root.name}'"}    
   end
+  def children
+    @section = Section.find(params[:id])
+    render :partial => "section_node", :collection => @section.child_nodes.all(:order => 'position'), :locals => {:display => true }
+  end
   
   private
   def move(to)
