@@ -348,14 +348,14 @@ jQuery(function($){
 	img.attr('src','/images/cms/sitemap/contract.png').addClass("folder-open")    
 	}
 	
-  if (childSections.hasClass('loading_placeholder')){
-    // We don't want the section node, we want the section
-    var sectionId = getId($(sectionNode).find('td.node')[0].id, "section_");
-    childSections.load('/cms/section_nodes/'+sectionId+'/children', function(){
-      childSections.removeClass('loading_placeholder')
-      initSitemap()
-    })
-  }
+	if (childSections.hasClass('loading_placeholder')){
+		// We don't want the section node, we want the section
+		var sectionId = getId($(sectionNode).find('td.node')[0].id, "section_");
+		childSections.load('/cms/section_nodes/'+sectionId+'/children', function(){
+			childSections.removeClass('loading_placeholder')
+			initSitemap()
+		})
+	}
     }
     
     var closeSection = function(sectionNode) {
