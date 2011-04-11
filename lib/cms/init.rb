@@ -19,8 +19,13 @@ module Cms
     # This is called after the environment is ready
     def init
       ActionController::Routing::RouteSet::Mapper.send :include, Cms::Routes
-      ActiveSupport::Dependencies.load_paths += %W( #{RAILS_ROOT}/app/portlets )
-      ActiveSupport::Dependencies.load_paths += %W( #{RAILS_ROOT}/app/portlets/helpers )      
+      if Rails::VERSION::MAJOR == 2 && Rails::VERSION::MINOR == 3 && Rails::VERSION::TINY >= 9
+        ActiveSupport::Dependencies.autoload_paths += %W( #{RAILS_ROOT}/app/portlets )
+        ActiveSupport::Dependencies.autoload_paths += %W( #{RAILS_ROOT}/app/portlets/helpers )
+      else
+        ActiveSupport::Dependencies.load_paths += %W( #{RAILS_ROOT}/app/portlets )
+        ActiveSupport::Dependencies.load_paths += %W( #{RAILS_ROOT}/app/portlets/helpers )
+      end
       ActionController::Base.append_view_path Cms::DynamicView.base_path
       ActionView::Base.default_form_builder = Cms::FormBuilder
       
@@ -48,7 +53,11 @@ module Cms
     end   
     
     def add_to_rails_paths(path)
-      ActiveSupport::Dependencies.load_paths << File.join(path, "app", "portlets")
+      if Rails::VERSION::MAJOR == 2 && Rails::VERSION::MINOR == 3 && Rails::VERSION::TINY >= 9
+        ActiveSupport::Dependencies.autoload_paths << File.join(path, "app", "portlets")
+      else
+        ActiveSupport::Dependencies.load_paths << File.join(path, "app", "portlets")
+      end
     end
 
     def add_to_routes(route)
