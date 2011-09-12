@@ -1,6 +1,6 @@
 module Cms
 class SectionNodesController < Cms::BaseController
-  check_permissions :publish_content, :except => [:index]
+  check_permissions :publish_content, :except => [:index, :children]
   
   def index
     @toolbar_tab = :sitemap
