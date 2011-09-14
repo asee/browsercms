@@ -8,9 +8,11 @@ require 'acts_as_list'
 ActiveRecord::Base.send(:include, ActsAsList)
 
 #Include CMS Behaviors
+require 'cms/acts/content_block'
 ActiveRecord::Base.send(:include, Cms::Acts::ContentBlock)
 require 'cms/behaviors'
 
+require 'cms/acts/cms_user'
 ActiveRecord::Base.send(:include, Cms::Acts::CmsUser)
 
 require 'bespin_area/init'

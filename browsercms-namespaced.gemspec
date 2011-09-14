@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{browsercms-namespaced}
-  s.version = "3.1.0"
+  s.version = "3.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["BrowserMedia"]
-  s.date = %q{2010-05-21}
+  s.date = %q{2011-09-13}
   s.description = %q{BrowserCMS is a general purpose, open source Web Content Management System (CMS) written in Ruby on Rails. Designed for web developers who want to create great looking websites while using standard Rails tools for customizing it.}
   s.email = %q{github@browsermedia.com}
   s.executables = ["browsercms", "bcms"]
@@ -673,7 +673,7 @@ Gem::Specification.new do |s|
      "lib/bespin_area/test/bespin_area_test.rb",
      "lib/bespin_area/test/test_helper.rb",
      "lib/bespin_area/uninstall.rb",
-     "lib/browsercms.rb",
+     "lib/browsercms-namespaced.rb",
      "lib/cms/acts/cms_user.rb",
      "lib/cms/acts/content_block.rb",
      "lib/cms/acts/content_page.rb",
@@ -1392,7 +1392,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{browsercms-namespaced}
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{BrowserCMS is a general purpose, open source Web Content Management System (CMS) written in Ruby on Rails. Designed for web developers who want to create great looking websites while using standard Rails tools for customizing it.}
   s.test_files = [
     "test/custom_assertions.rb",
@@ -1472,10 +1472,9 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
     else
     end
   else
